@@ -1,0 +1,6 @@
+{
+  "name": "KoboSync - Irrigated Wheat Field Monitoring & Offline Sync Dashboard",
+  "description": "Offline-first field survey application and real-time visualization dashboard for KoboToolbox form 9OBwKKRd (Irrigated Wheat Monitoring - Oromia) with automated conflict resolution and multi-tier synchronization.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
