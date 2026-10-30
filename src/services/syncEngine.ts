@@ -413,6 +413,13 @@ class SyncEngine {
     }, 30000);
   }
 
+  public deleteRecord(id: string): void {
+    const records = loadStoredRecords();
+    const filtered = records.filter((r) => r.id !== id);
+    saveStoredRecords(filtered);
+    this.notifyListeners();
+  }
+
   public destroy() {
     if (this.autoSyncInterval) {
       clearInterval(this.autoSyncInterval);

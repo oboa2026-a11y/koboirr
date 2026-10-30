@@ -162,35 +162,35 @@ export const MapView: React.FC<MapViewProps> = ({ records }) => {
   return (
     <div className="space-y-4">
       {/* Map Control Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-900 border border-slate-800 p-4 rounded-xl shadow-sm">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white border border-slate-200 p-4 rounded-xl shadow-sm">
         <div className="flex items-center gap-2">
-          <div className="p-2 bg-emerald-950 text-emerald-400 border border-emerald-800 rounded-lg">
+          <div className="p-2 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg">
             <MapPin className="w-4 h-4" />
           </div>
           <div>
-            <h3 className="text-sm font-bold text-white">Geographic Surveillance & Scheme Mapping</h3>
-            <p className="text-xs text-slate-400">
+            <h3 className="text-sm font-bold text-slate-900">Geographic Surveillance & Scheme Mapping</h3>
+            <p className="text-xs text-slate-500">
               {filteredSchemes.length} irrigation schemes and {farmlandsWithContext.length} monitored GPS farmland plots
             </p>
           </div>
         </div>
 
         {/* Zone Selector */}
-        <div className="flex items-center gap-2 text-xs bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700">
-          <Filter className="w-3.5 h-3.5 text-slate-400" />
-          <span className="text-slate-400">Filter Zone:</span>
+        <div className="flex items-center gap-2 text-xs bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-300">
+          <Filter className="w-3.5 h-3.5 text-slate-500" />
+          <span className="text-slate-500 font-medium">Filter Zone:</span>
           <select
             value={activeZone}
             onChange={(e) => setActiveZone(e.target.value)}
-            className="bg-transparent text-white font-medium focus:outline-none cursor-pointer"
+            className="bg-transparent text-slate-900 font-semibold focus:outline-none cursor-pointer"
           >
-            <option value="all" className="bg-slate-800">
+            <option value="all" className="bg-white text-slate-900">
               All Zones ({schemesWithContext.length} schemes)
             </option>
             {zones
               .filter((z) => z !== 'all')
               .map((z) => (
-                <option key={z} value={z} className="bg-slate-800">
+                <option key={z} value={z} className="bg-white text-slate-900">
                   {z}
                 </option>
               ))}
@@ -201,29 +201,29 @@ export const MapView: React.FC<MapViewProps> = ({ records }) => {
       {/* Map + Sidebar Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
         {/* Main Map Container */}
-        <div className="lg:col-span-3 bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-sm h-[560px] relative">
+        <div className="lg:col-span-3 bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm h-[560px] relative">
           <div ref={mapContainerRef} className="w-full h-full z-10" />
 
           {/* Map Floating Legend */}
-          <div className="absolute bottom-4 left-4 z-20 bg-slate-900/90 backdrop-blur-md border border-slate-700/80 p-3 rounded-lg text-xs text-slate-200 shadow-lg pointer-events-auto">
-            <span className="font-bold text-[11px] uppercase tracking-wider text-slate-400 block mb-1.5">
+          <div className="absolute bottom-4 left-4 z-20 bg-white/95 backdrop-blur-md border border-slate-200 p-3 rounded-xl text-xs text-slate-800 shadow-lg pointer-events-auto">
+            <span className="font-bold text-[11px] uppercase tracking-wider text-slate-500 block mb-1.5">
               Map Legend
             </span>
-            <div className="space-y-1.5">
+            <div className="space-y-1.5 font-medium">
               <div className="flex items-center gap-2">
-                <span className="w-3 h-3 rounded-full bg-emerald-500 border border-emerald-800"></span>
+                <span className="w-3 h-3 rounded-full bg-emerald-500 border border-emerald-700"></span>
                 <span>Optimal Scheme (All Pumps Working)</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="w-3 h-3 rounded-full bg-amber-500 border border-amber-800"></span>
+                <span className="w-3 h-3 rounded-full bg-amber-500 border border-amber-700"></span>
                 <span>Pumps Under Maintenance</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="w-3 h-3 rounded-full bg-rose-500 border border-rose-800"></span>
+                <span className="w-3 h-3 rounded-full bg-rose-500 border border-rose-700"></span>
                 <span>Broken Pumps / Deficit</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-sky-400 border border-sky-600"></span>
+                <span className="w-2.5 h-2.5 rounded-full bg-sky-500 border border-sky-700"></span>
                 <span>Monitored Farmland GPS Plot</span>
               </div>
             </div>
@@ -234,90 +234,90 @@ export const MapView: React.FC<MapViewProps> = ({ records }) => {
         <div className="space-y-4">
           {/* Selected Scheme Details Card */}
           {selectedScheme ? (
-            <div className="bg-slate-900 border border-emerald-600/50 p-4 rounded-xl shadow-sm text-xs">
+            <div className="bg-white border border-emerald-300 p-4 rounded-xl shadow-sm text-xs text-slate-800">
               <div className="flex items-center justify-between mb-2">
-                <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-800">
+                <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
                   Selected Scheme
                 </span>
-                <span className="text-slate-400 font-mono text-[11px]">
+                <span className="text-slate-500 font-mono text-[11px]">
                   {selectedScheme.gps_lat.toFixed(3)}, {selectedScheme.gps_lng.toFixed(3)}
                 </span>
               </div>
-              <h4 className="font-bold text-sm text-white">{selectedScheme.name}</h4>
-              <p className="text-slate-400 text-[11px] mb-3">Source: {selectedScheme.source_name}</p>
+              <h4 className="font-bold text-sm text-slate-900">{selectedScheme.name}</h4>
+              <p className="text-slate-500 text-[11px] mb-3">Source: {selectedScheme.source_name}</p>
 
-              <div className="space-y-2 bg-slate-800/60 p-2.5 rounded border border-slate-700/60 text-slate-300">
+              <div className="space-y-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200 text-slate-700">
                 <div className="flex justify-between">
                   <span>Command Area:</span>
-                  <span className="font-semibold text-white">{formatNumber(selectedScheme.wheat_actual_ha)} ha</span>
+                  <span className="font-semibold text-slate-900">{formatNumber(selectedScheme.wheat_actual_ha)} ha</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Beneficiaries:</span>
-                  <span className="font-semibold text-white">
+                  <span className="font-semibold text-slate-900">
                     {formatNumber(selectedScheme.beneficiaries_m + selectedScheme.beneficiaries_f)} HHs
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span>Irrigation Interval:</span>
-                  <span className="font-semibold text-white">{selectedScheme.interval_days} days</span>
+                  <span className="font-semibold text-slate-900">{selectedScheme.interval_days} days</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Avg Discharge:</span>
-                  <span className="font-semibold text-white">{selectedScheme.pump_avg_capacity_ls} L/s</span>
+                  <span className="font-semibold text-slate-900">{selectedScheme.pump_avg_capacity_ls} L/s</span>
                 </div>
               </div>
 
-              <div className="mt-3 pt-2 border-t border-slate-800">
-                <span className="text-[11px] font-semibold text-slate-400 block mb-1">Pump Inventory:</span>
+              <div className="mt-3 pt-2 border-t border-slate-200">
+                <span className="text-[11px] font-semibold text-slate-600 block mb-1">Pump Inventory:</span>
                 <div className="grid grid-cols-3 gap-1 text-center font-mono">
-                  <div className="bg-emerald-950/60 p-1.5 rounded border border-emerald-800 text-emerald-300">
+                  <div className="bg-emerald-50 p-1.5 rounded-lg border border-emerald-200 text-emerald-800">
                     <span className="block text-sm font-bold">{selectedScheme.pumps_functional}</span>
-                    <span className="text-[9px]">Functional</span>
+                    <span className="text-[9px] font-sans">Functional</span>
                   </div>
-                  <div className="bg-amber-950/60 p-1.5 rounded border border-amber-800 text-amber-300">
+                  <div className="bg-amber-50 p-1.5 rounded-lg border border-amber-200 text-amber-800">
                     <span className="block text-sm font-bold">{selectedScheme.pumps_under_maintenance}</span>
-                    <span className="text-[9px]">Maint.</span>
+                    <span className="text-[9px] font-sans">Maint.</span>
                   </div>
-                  <div className="bg-rose-950/60 p-1.5 rounded border border-rose-800 text-rose-300">
+                  <div className="bg-rose-50 p-1.5 rounded-lg border border-rose-200 text-rose-800">
                     <span className="block text-sm font-bold">{selectedScheme.pumps_broken}</span>
-                    <span className="text-[9px]">Broken</span>
+                    <span className="text-[9px] font-sans">Broken</span>
                   </div>
                 </div>
               </div>
             </div>
           ) : (
-            <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl text-xs text-center text-slate-400">
-              <Info className="w-5 h-5 mx-auto mb-1.5 text-slate-500" />
+            <div className="bg-white border border-slate-200 p-4 rounded-xl text-xs text-center text-slate-500 shadow-sm">
+              <Info className="w-5 h-5 mx-auto mb-1.5 text-slate-400" />
               <span>Click any map marker or select a scheme below to inspect its live pump and water data.</span>
             </div>
           )}
 
           {/* Scheme Quick List */}
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-sm">
-            <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-2.5">Schemes In Focus</h4>
+          <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+            <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-2.5">Schemes In Focus</h4>
             <div className="space-y-2 max-h-[300px] overflow-y-auto pr-1">
               {filteredSchemes.map((s, idx) => (
                 <button
                   key={`${s.id}_${s.kebele}_${idx}`}
                   onClick={() => handleFlyTo(s)}
-                  className={`w-full text-left p-2 rounded-lg border text-xs transition-colors cursor-pointer ${
+                  className={`w-full text-left p-2 rounded-xl border text-xs transition-colors cursor-pointer ${
                     selectedScheme?.id === s.id
-                      ? 'bg-emerald-950/40 border-emerald-600/50 text-white'
-                      : 'bg-slate-800/60 border-slate-700/60 text-slate-300 hover:bg-slate-800 hover:text-white'
+                      ? 'bg-emerald-50 border-emerald-300 text-slate-900 font-medium'
+                      : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100'
                   }`}
                 >
-                  <div className="font-semibold truncate">{s.name}</div>
-                  <div className="text-[10px] text-slate-400 flex items-center justify-between mt-1">
+                  <div className="font-semibold text-slate-900 truncate">{s.name}</div>
+                  <div className="text-[10px] text-slate-500 flex items-center justify-between mt-1">
                     <span>
                       {s.woreda} &bull; {s.wheat_actual_ha} ha
                     </span>
                     <span
                       className={`font-semibold ${
                         s.pumps_broken > 0
-                          ? 'text-rose-400'
+                          ? 'text-rose-700'
                           : s.pumps_under_maintenance > 0
-                          ? 'text-amber-400'
-                          : 'text-emerald-400'
+                          ? 'text-amber-700'
+                          : 'text-emerald-700'
                       }`}
                     >
                       {s.pumps_functional}/{s.pumps_total} pumps
